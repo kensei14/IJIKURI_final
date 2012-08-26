@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+
+.clearfix:after { content: ""; display: block; clear: both; }
+
+.myheader {
+  min-width: 100%;
+  min-height: 60px;
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: black;
+}
+
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  /* Set up positioning */
+  position: fixed;
+  /* またはabsolute; */
+  top: 60px;
+  left: 0;
+}
+
+#img01 { z-index: 10; }
+#img02_01 { z-index: 9; }
+#img02_02 { z-index: 8; }
+#img02_03 { z-index: 7; }
+#img03_01 { z-index: 6; }
+#img03_02 { z-index: 5; }
+#img03_03 { z-index: 4; }
+
+
+#global_container {
+	height: 1200px;
+	position: relative;
+	display: block;
+	margin: 100px auto;
+	border: solid 1px black;
+	z-index: 50;
+}
