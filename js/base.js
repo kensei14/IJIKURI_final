@@ -14,8 +14,7 @@ $(document).ready(function() {
     console.log(" width =  " + pageWidth);
     g_container.style.width = pageWidth * 0.8 + "px";
     
-    
-
+    setData();
 });
 
 var fadeData =  [
@@ -27,8 +26,6 @@ var fadeData =  [
 	[5500, false, "#img03_02"],
 	[6500, false, "#img03_03"]
 ]
-
-alert(fadeData.length);
 
 window.onscroll = function() {
 	var scroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -48,6 +45,47 @@ window.onscroll = function() {
 		}
 		
 	}
+	obj1.scrolling(scroll);
+	obj2.scrolling(scroll);
+}
+
+function Contents(elem, initial_page, final_page, initial_pos, final_pos) {	
+	this.initial_page = initial_page;
+	this.final_page = final_page;
+	this.initial_pos = initial_pos;	
+	this.final_pos = final_pos;
+
+	this.speed = [];
+	this.speed[0] = (final_pos[0] - initial_pos[0]) / (final_page - initial_page);
+	this.speed[1] = (final_pos[1] - initial_pos[1]) / (final_page - initial_page);
+	
+	this.elem = elem;
+	this.elem.style.top = parseInt((initial_page + initial_pos[0]) - (this.speed[0] * initial_page)) + "px";
+	this.elem.style.left = parseInt(this.initial_pos[1]) + "px";
+	
+	this.scrolling = function(scrollx) {
+		this.elem.style.top = parseInt((initial_page + initial_pos[0]) + (this.speed[0] * scrollx)) + "px";
+		this.elem.style.left = parseInt(this.initial_pos[1] + (this.speed[1] * scrollx)) + "px";
+		this.out();
+	}
+	
+	this.out = function() {
+		var str = "";
+		str += "initial_pos  " + this.initial_pos[0] + "  ";
+		str += "initial_pos  " + this.final_pos[0] + "  ";
+		str += "speed  " + this.speed[0] + "  ";
+		str += "top  " + this.elem.style.top + "  ";
+		str += "left  " +  this.elem.style.left + "  ";
+		console.log(i + "  " + str);
+	}
+}
+
+var obj1, obj2;
+function setData() {
+	obj1 = new Contents(document.getElementById("elem1"), 500, 3500, [400, 250], [100, 230]);
+	obj2 = new Contents(document.getElementById("elem2"), 500, 3500, [600, 600], [400, 620]);
+	
+	obj1.out();
 }
 
 //})(jQuery);

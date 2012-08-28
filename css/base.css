@@ -3,7 +3,17 @@
 
 .clearfix:after { content: ""; display: block; clear: both; }
 
+#img01 { z-index: 100; }
+#img02_01 { z-index: 9; }
+#img02_02 { z-index: 8; }
+#img02_03 { z-index: 7; }
+#img03_01 { z-index: 6; }
+#img03_02 { z-index: 5; }
+#img03_03 { z-index: 4; }
+
 .myheader {
+  z-index: 50;
+  
   min-width: 100%;
   min-height: 60px;
   width: 100%;
@@ -11,7 +21,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
   background-color: black;
 }
 
@@ -25,24 +34,24 @@ img.bg {
   /* Set up positioning */
   position: fixed;
   /* またはabsolute; */
-  top: 60px;
+  top: 50px;
   left: 0;
 }
-
-#img01 { z-index: 10; }
-#img02_01 { z-index: 9; }
-#img02_02 { z-index: 8; }
-#img02_03 { z-index: 7; }
-#img03_01 { z-index: 6; }
-#img03_02 { z-index: 5; }
-#img03_03 { z-index: 4; }
-
 
 #global_container {
 	height: 1200px;
 	position: relative;
 	display: block;
 	margin: 100px auto;
-	border: solid 1px black;
 	z-index: 50;
 }
+
+.contents {
+	position: absolute;
+	left: 500px;
+	display: block;
+}
+
+
+#elem1 { z-index: 50; width: 600px;	height: 600px; }
+#elem2 { z-index: 50; width: 800px;	height: 800px;}
