@@ -13,41 +13,8 @@ $(document).ready(function() {
     
     console.log(" width =  " + pageWidth);
     g_container.style.width = pageWidth * 0.8 + "px";
-    
     setData();
 });
-
-var fadeData =  [
-	[500, false, "#img01"],
-	[1500, false, "#img02_01"],
-	[2500, false, "#img02_02"],
-	[3500, false, "#img02_03"],
-	[4500, false, "#img03_01"],
-	[5500, false, "#img03_02"],
-	[6500, false, "#img03_03"]
-]
-
-window.onscroll = function() {
-	var scroll = document.body.scrollTop || document.documentElement.scrollTop;
-	var rate;
-	console.log("scroll = " + scroll);
-	
-	for(var i=0; i < fadeData.length; i++) {
-		if ((scroll > fadeData[i][0]) && !fadeData[i][1]) {
-	    	console.log("scroll = " + scroll + "  rate :  " + rate);
-	    	fadeData[i][1] = true;
-			$(fadeData[i][2]).fadeTo(1000, 0.0, function() { console.log("ok");}) ;    		
-		}
-		else if ((scroll < fadeData[i][0]) && fadeData[i][1]) {
-	    	console.log("scroll = " + scroll + "  rate :  " + rate);
-	    	fadeData[i][1] = false;
-			$(fadeData[i][2]).fadeTo(1000, 1.0, function() { console.log("ok");}) ;    		
-		}
-		
-	}
-	obj1.scrolling(scroll);
-	obj2.scrolling(scroll);
-}
 
 function Contents(elem, initial_page, final_page, initial_pos, final_pos) {	
 	this.initial_page = initial_page;
@@ -76,8 +43,61 @@ function Contents(elem, initial_page, final_page, initial_pos, final_pos) {
 		str += "speed  " + this.speed[0] + "  ";
 		str += "top  " + this.elem.style.top + "  ";
 		str += "left  " +  this.elem.style.left + "  ";
-		console.log(i + "  " + str);
+		//console.log( str);
 	}
+}
+
+var pre_scroll = -1; /* 前のイベントでのスクロール値 */
+window.onscroll = function() {
+	var scroll = document.body.scrollTop || document.documentElement.scrollTop;
+	var rate;
+	
+	console.log("pre_scroll =  "  + pre_scroll + "  scroll =  " + scroll );
+	if (scroll > pre_scroll) {	// 下に向かっている 
+		for(var i=1; i < fadeData.length; i++) {
+			if ((scroll > fadeData[i][0]) && !fadeData[i][1]) {
+		    	fadeData[i][1] = true;
+				$(fadeData[i][2]).fadeTo(1000, 0.0, function() { }) ;
+			}
+		}
+
+		if ((scroll > fadeData[0][0]) && !fadeData[0][1]) {
+	    	fadeData[0][1] = true;
+			//$(fadeData[0][2]).fadeTo(1000, 0.0, function() { $("#myheader").slideDown(10000); }) ;
+			$(fadeData[0][2]).fadeTo(1000, 0.0, function() { $("#myheader").slideDown('normal', 'swing'); }); //なぜかcssで min-width, min-heightを指定すると動かない。
+		}
+		
+	} else { //上に向かっている
+		for(var i=1; i < fadeData.length; i++) {
+			if ((scroll < fadeData[i][0]) && fadeData[i][1]) {
+		    	fadeData[i][1] = false;
+				$(fadeData[i][2]).fadeTo(1000, 1.0, function() { }) ;    		
+			}    		
+		}
+	}
+	pre_scroll = scroll;
+		
+	/*
+	for(var i=0; i < fadeData.length; i++) {
+		if ((scroll > fadeData[i][0]) && !fadeData[i][1]) {
+			alert("下に行く");
+	    	console.log("scroll = " + scroll + "  rate :  " + rate);
+	    	fadeData[i][1] = true;
+			$(fadeData[i][2]).fadeTo(1000, 0.0, function() { console.log("ok");}) ;    		
+		}
+		else if ((scroll < fadeData[i][0]) && fadeData[i][1]) {
+			alert("上に行く");
+	    	console.log("scroll = " + scroll + "  rate :  " + rate);
+	    	fadeData[i][1] = false;
+			$(fadeData[i][2]).fadeTo(1000, 1.0, function() { console.log("ok");}) ;    		
+		}
+		
+	}
+	*/
+	
+	obj1.scrolling(scroll);
+	obj2.scrolling(scroll);
+
 }
 
 var obj1, obj2;
@@ -88,4 +108,21 @@ function setData() {
 	obj1.out();
 }
 
+var fadeData =  [
+	[500, false, "#img01"],
+	[1500, false, "#img02_01"],
+	[2500, false, "#img02_02"],
+	[3500, false, "#img02_03"],
+	[4500, false, "#img03_01"],
+	[5500, false, "#img03_02"],
+	[6500, false, "#img03_03"]
+]
+
+
+function slider() {
+	$("#myheader").slideDown(2000, 'swing');
+	$("#elem1").css("display", "none");
+	$("#elem1").slideDown(2000, 'swing');
+}
+	
 //})(jQuery);
