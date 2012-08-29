@@ -12,8 +12,24 @@
 #img03_02 { z-index: 5; }
 #img03_03 { z-index: 4; }
 
+#global_container {
+	z-index: 200;
+	position: relative;
+	display: none;
+	
+	height:10000px;
+	border: solid 5px black;
+}
+
+#logo {
+	position: fixed;
+	display:block;
+
+	margin: 200 auto 0;
+}
+
 #myheader {
-  z-index: 51;
+  z-index: 150;
   display: none;
   position: fixed;
   top: 0;
@@ -33,8 +49,12 @@
 .headerChild {
   float:left;
   margin: 0 50px 0 0;
+}
+
+.headerChild a{
   font-size: 15pt;
   color: white;
+  text-decoration: none;
 }
 
 img.bg {
@@ -49,15 +69,6 @@ img.bg {
   width: auto;
 }
 
-#global_container {
-	z-index: 50;
-	
-	height: 1200px;
-	position: relative;
-	display: block;
-	margin: 100px auto;
-}
-
 .contents {
 	position: absolute;
 	display: block;
@@ -67,3 +78,5 @@ img.bg {
 
 #elem1 { z-index: 50; width: 600px;	height: 600px; }
 #elem2 { z-index: 50; width: 800px;	height: 800px;}
+#elem3 { z-index: 50; width: 800px;	height: 800px; }
+#elem4 { z-index: 50; width: 500px;	height: 500px;}

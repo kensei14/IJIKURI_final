@@ -6,10 +6,26 @@
 
 $(document).ready(function() {
 
-    var SCROLL_TIME = 1000;
     //var pageWidth = $(window).width() || 1000;
     var pageWidth = document.documentElement.clientWidth || window.innerWidth || window.document.documentElement.clientWidth || window.outerWidth;
-    var g_container = document.getElementById("global_container");
+    var pageHeight = document.documentElement.clientHeight || window.innerHeight || window.document.documentElement.clientHeight || window.outerHeight;
+    var screenWidth = window.outerWidth;
+    var screenHeight = window.outerHeight;
+
+    var logo = $("#logo");
+    var logo_width = pageWidth * 0.25;
+    //logo.css("height", parseInt(pageHeight * 0.4) + "px");
+    logo.css("width", parseInt(logo_width) + "px");
+    logo.css("height", "auto");
+    logo.css("left", parseInt(pageWidth/2 - logo_width/2) + "px");
+    logo.css("top", parseInt(pageHeight * 0.2) + "px");
+
+	$("#global_container").fadeTo(7000, 1.0, function() { });
+	
+    var a_elems = document.getElementsByTagName("a");    
+    for(var i=0; i < a_elems.length; i++) {
+    	a_elems[i].addEventListener("click", scrollToAnchor, false);
+    }
     
     setData();
 });
@@ -59,7 +75,7 @@ var pre_scroll = -1; /* 前のイベントでのスクロール値 */
 window.onscroll = function() {
 	var scroll = document.body.scrollTop || document.documentElement.scrollTop;
 	var rate;
-	
+		
 	if (scroll > pre_scroll) {	// 下に向かっている 
 		for(var i=1; i < fadeData.length; i++) {
 			if ((scroll > fadeData[i][0]) && !fadeData[i][1]) {
@@ -71,6 +87,7 @@ window.onscroll = function() {
 		if ((scroll > fadeData[0][0]) && !fadeData[0][1]) {
 	    	fadeData[0][1] = true;
 			//$(fadeData[0][2]).fadeTo(1000, 0.0, function() { $("#myheader").slideDown(10000); }) ;
+			$("#logo").fadeTo(1000, 0.0, function() {});
 			$(fadeData[0][2]).fadeTo(1000, 0.0, function() { $("#myheader").slideDown('normal', 'swing'); }); //なぜかcssで min-width, min-heightを指定すると動かない。
 		}
 		
@@ -86,14 +103,39 @@ window.onscroll = function() {
 	
 	obj1.scrolling(scroll);
 	obj2.scrolling(scroll);
+	obj3.scrolling(scroll);
+	obj4.scrolling(scroll);
 }
 
-var obj1, obj2;
+function scrollToAnchor(event) {	
+	event.preventDefault();
+
+	var anchor  = $(this).attr('href');
+	switch(anchor) {
+		case '#About':
+			scrollTo(0, 510);
+			break;
+		case '#Members':
+			scrollTo(0, 2010);
+			break;
+		case '#Works':
+			scrollTo(0, 3000);
+			break;
+		case '#Contact':
+			break;
+		default :
+			break;
+	}
+						
+	return false;
+}
+
+var obj1, obj2, obj3, obj4;
 function setData() {
-	obj1 = new Contents(document.getElementById("elem1"), 500, 1500, [300, 250], [0, 250]);
-	obj2 = new Contents(document.getElementById("elem2"), 500, 1500, [700, 600], [-100, 600]);
-	
-	obj1.out();
+	obj1 = new Contents(document.getElementById("elem1"), 500, 1500, [300, 250], [100, 250]);
+	obj2 = new Contents(document.getElementById("elem2"), 500, 1500, [700, 600], [300, 600]);
+	obj3 = new Contents(document.getElementById("elem3"), 2000, 3000, [500, 700], [100, 700]);
+	obj4 = new Contents(document.getElementById("elem4"), 2000, 3000, [700, 300], [300, 300]);
 }
 
 var fadeData =  [
