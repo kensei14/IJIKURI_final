@@ -20,7 +20,7 @@ $(document).ready(function() {
     logo.css("left", parseInt(pageWidth/2 - logo_width/2) + "px");
     logo.css("top", parseInt(pageHeight * 0.2) + "px");
 
-	$("#global_container").fadeTo(7000, 1.0, function() { });
+	$("#global_container").fadeTo(1000, 1.0, function() { });
 	
     var a_elems = document.getElementsByTagName("a");    
     for(var i=0; i < a_elems.length; i++) {
@@ -132,27 +132,20 @@ function scrollToAnchor(event) {
 
 var obj1, obj2, obj3, obj4;
 function setData() {
-	obj1 = new Contents(document.getElementById("elem1"), 500, 1500, [300, 250], [100, 250]);
+	obj1 = new Contents(document.getElementById("elem1"), 500, 1500, [300, 250], [0, 250]);
 	obj2 = new Contents(document.getElementById("elem2"), 500, 1500, [700, 600], [300, 600]);
-	obj3 = new Contents(document.getElementById("elem3"), 2000, 3000, [500, 700], [100, 700]);
-	obj4 = new Contents(document.getElementById("elem4"), 2000, 3000, [700, 300], [300, 300]);
+	obj3 = new Contents(document.getElementById("elem3"), 3500, 4500, [500, 200], [0, 200]);
+	obj4 = new Contents(document.getElementById("elem4"), 3500, 4500, [800, 800], [500, 800]);
 }
 
 var fadeData =  [
 	[500, false, "#img01"],
 	[1000, false, "#img02_01"],
 	[1500, false, "#img02_02"],
-	[2000, false, "#img02_03"],
-	[2500, false, "#img03_01"],
-	[3000, false, "#img03_02"],
-	[3500, false, "#img03_03"]
+	[3500, false, "#img02_03"],
+	[4000, false, "#img03_01"],
+	[4500, false, "#img03_02"],
+	[6000, false, "#img03_03"]
 ]
-
-
-function slider() {
-	$("#myheader").slideDown(2000, 'swing');
-	$("#elem1").css("display", "none");
-	$("#elem1").slideDown(2000, 'swing');
-}
 	
 //})(jQuery);
