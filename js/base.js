@@ -27,10 +27,10 @@ $(document).ready(function() {
     	a_elems[i].addEventListener("click", scrollToAnchor, false);
     }
     
-    setData();
+    setData(pageWidth, pageHeight);
 });
 
-function Contents(elem, initial_page, final_page, initial_pos, final_pos) {	
+function Contents(elem, initial_page, final_page, initial_pos, final_pos, img_width) {
 	this.initial_page = initial_page;
 	this.final_page = final_page;
 	this.initial_pos = initial_pos;	
@@ -48,6 +48,8 @@ function Contents(elem, initial_page, final_page, initial_pos, final_pos) {
 	this.elem = elem;
 	this.elem.style.top = parseInt(this.begining[0]) + "px";
 	this.elem.style.left = parseInt(this.begining[1]) + "px";
+	this.elem.style.width = img_width + "px";
+	this.elem.style.height = "auto";
 	
 	this.scrolling = function(scrollx) {
 		this.out();
@@ -113,13 +115,12 @@ function scrollToAnchor(event) {
 	var anchor  = $(this).attr('href');
 	switch(anchor) {
 		case '#About':
-			scrollTo(0, 510);
+			scrollTo(0, fadeData[2][0] + 10);
 			break;
 		case '#Members':
-			scrollTo(0, 2010);
+			scrollTo(0, fadeData[5][0] + 10);
 			break;
 		case '#Works':
-			scrollTo(0, 3000);
 			break;
 		case '#Contact':
 			break;
@@ -131,11 +132,11 @@ function scrollToAnchor(event) {
 }
 
 var obj1, obj2, obj3, obj4;
-function setData() {
-	obj1 = new Contents(document.getElementById("elem1"), 500, 1500, [300, 250], [0, 250]);
-	obj2 = new Contents(document.getElementById("elem2"), 500, 1500, [700, 600], [300, 600]);
-	obj3 = new Contents(document.getElementById("elem3"), 3500, 4500, [500, 200], [0, 200]);
-	obj4 = new Contents(document.getElementById("elem4"), 3500, 4500, [800, 800], [500, 800]);
+function setData(w, h) {
+	obj1 = new Contents(document.getElementById("elem1"), 500, 1500, [300, parseInt(w*0.15)], [0,  parseInt(w*0.15)], parseInt(w*0.36));
+	obj2 = new Contents(document.getElementById("elem2"), 500, 1500, [700,  parseInt(w*0.36)], [300,  parseInt(w*0.36)], parseInt(w*0.5));
+	obj3 = new Contents(document.getElementById("elem3"), 3500, 4500, [500,  parseInt(w*0.12)], [0,  parseInt(w*0.12)], parseInt(w*0.5));
+	obj4 = new Contents(document.getElementById("elem4"), 3500, 4500, [800,  parseInt(w*0.50)], [500,  parseInt(w*0.50)], parseInt(w*0.3));
 }
 
 var fadeData =  [

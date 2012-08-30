@@ -12,43 +12,60 @@
 #img03_02 { z-index: 5; }
 #img03_03 { z-index: 4; }
 
+#elem1 { z-index: 50; }
+#elem2 { z-index: 50; }
+#elem3 { z-index: 50; }
+#elem4 { z-index: 50; }
+
 #global_container {
-	z-index: 200;
+	z-index: 150;
 	position: relative;
 	display: none;
 	
 	height:10000px;
-	border: solid 5px black;
 }
 
 #logo {
 	position: fixed;
 	display:block;
-
 	margin: 200 auto 0;
 }
 
 #myheader {
-  z-index: 150;
+  z-index: 151;
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   
   width: 100%;
-  height: 60px;
-  background-color: black;
+  height: 50px;
+  background-image: url("../src/menubar3.png");
+  background-repeat: repeat-x;
+  /*background-color: black;*/
 }
 
 #menubar {
   width: 70%;
-  padding: 20px;
+  padding: 15px;
   margin: 0 auto 0;
 }
 
+#ich {
+	float: left;
+}
+.ich_img {
+	height: 20px;
+	float: left;
+}
+
+.menu_img {
+  height: 13px;
+}
+
 .headerChild {
-  float:left;
-  margin: 0 50px 0 0;
+  float:right;
+  margin: 0 40px 0 0;
 }
 
 .headerChild a{
@@ -75,8 +92,3 @@ img.bg {
 
 	left: 500px;
 }
-
-#elem1 { z-index: 50; width: 600px;	height: 600px; }
-#elem2 { z-index: 50; width: 800px;	height: 800px;}
-#elem3 { z-index: 50; width: 800px;	height: 800px; }
-#elem4 { z-index: 50; width: 500px;	height: 500px;}
